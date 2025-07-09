@@ -22,7 +22,7 @@ def create_app():
     db.init_app(app)
 
     # Import models so that SQLAlchemy is aware of them
-    from . import models  # noqa: F401
+    from KaranBOT import models  # noqa: F401
 
     @app.route("/")
     def index():
