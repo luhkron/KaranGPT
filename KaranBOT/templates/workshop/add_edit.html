@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('workshop.list_jobs') }}">Workshop</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ action }}</li>
+  </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+<h2>{{ action }} Workshop Job</h2>
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    <textarea class="form-control" name="description" required>{{ job.description if job else '' }}</textarea>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Status</label>
+    <select class="form-select" name="status">
+      {% for s in ['Open', 'In Progress', 'Closed'] %}
+      <option value="{{ s }}" {% if job and job.status == s %}selected{% endif %}>{{ s }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Cost</label>
+    <input class="form-control" name="cost" type="number" step="0.01" value="{{ job.cost if job else '' }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Truck</label>
+    <select class="form-select" name="truck_id">
+      <option value="">-- None --</option>
+      {% for t in trucks %}
+      <option value="{{ t.id }}" {% if job and job.truck_id == t.id %}selected{% endif %}>{{ t.unit_number }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Trailer</label>
+    <select class="form-select" name="trailer_id">
+      <option value="">-- None --</option>
+      {% for t in trailers %}
+      <option value="{{ t.id }}" {% if job and job.trailer_id == t.id %}selected{% endif %}>{{ t.trailer_id }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button class="btn btn-success">{{ action }}</button>
+  <a href="{{ url_for('workshop.list_jobs') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

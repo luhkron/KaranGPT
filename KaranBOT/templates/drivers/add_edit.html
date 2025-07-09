@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('drivers.list_drivers') }}">Drivers</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ action }}</li>
+  </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+<h2>{{ action }} Driver</h2>
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input class="form-control" name="name" required value="{{ driver.name if driver else '' }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">License Number</label>
+    <input class="form-control" name="license_number" required value="{{ driver.license_number if driver else '' }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Phone</label>
+    <input class="form-control" name="phone" value="{{ driver.phone if driver else '' }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input class="form-control" name="email" value="{{ driver.email if driver else '' }}">
+  </div>
+  <div class="form-check mb-3">
+    <input class="form-check-input" type="checkbox" name="active" id="active" {% if driver and driver.active %}checked{% endif %}>
+    <label class="form-check-label" for="active">Active</label>
+  </div>
+  <button class="btn btn-success">{{ action }}</button>
+  <a href="{{ url_for('drivers.list_drivers') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

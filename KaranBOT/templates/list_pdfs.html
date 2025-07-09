@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Uploaded PDFs</h2>
+<ul>
+  {% for file in files %}
+    <li>
+      <a href="{{ url_for('pdf.serve_pdf', filename=file) }}" target="_blank">{{ file }}</a>
+    </li>
+  {% endfor %}
+</ul>
+<a href="{{ url_for('pdf.upload_pdf') }}">Upload another PDF</a>
+{% endblock %}

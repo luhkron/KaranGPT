@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Import Data{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Import Data from Spreadsheet</h1>
+    <p>Upload an Excel (.xlsx, .xls) or CSV (.csv) file to populate the database. Make sure your file has columns that match the data type you are importing.</p>
+    
+    <div class="card bg-light p-4">
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="data_type" class="form-label"><strong>1. Select Data Type</strong></label>
+                <select class="form-select" id="data_type" name="data_type" required>
+                    <option value="" disabled selected>Choose what to import...</option>
+                    <option value="drivers">Drivers</option>
+                    <option value="trucks">Trucks</option>
+                    <option value="trailers">Trailers</option>
+                    <option value="workshop_jobs">Workshop Jobs</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="file" class="form-label"><strong>2. Choose File to Upload</strong></label>
+                <input class="form-control" type="file" id="file" name="file" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Upload and Import</button>
+        </form>
+    </div>
+
+    <div class="mt-4">
+        <h5>Required Columns for Drivers:</h5>
+        <p>Your spreadsheet must contain the following columns: <code>name</code>, <code>license_number</code>. Optional columns are <code>phone</code>, <code>email</code>, and <code>active</code>.</p>
+
+        <h5>Required Columns for Trucks:</h5>
+        <p>Your spreadsheet must contain the following column: <code>unit_number</code>. Optional columns are <code>make</code>, <code>model</code>, <code>rego</code>, <code>capacity_tonnes</code>, and <code>current_km</code>.</p>
+
+        <h5>Required Columns for Trailers:</h5>
+        <p>Your spreadsheet must contain the following column: <code>trailer_id</code>. Optional columns are <code>type</code>, <code>rego</code>, and <code>capacity_tonnes</code>.</p>
+
+        <h5>Required Columns for Workshop Jobs:</h5>
+        <p>Your spreadsheet must contain the following column: <code>description</code>. You must also include either a <code>truck_unit_number</code> or a <code>trailer_trailer_id</code> to link the job to a vehicle. Optional columns are <code>date_opened</code>, <code>date_closed</code>, <code>status</code>, and <code>cost</code>.</p>
+    </div>
+</div>
+{% endblock %}

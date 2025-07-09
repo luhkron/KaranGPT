@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Fleet Dashboard</h1>
+<div class="row g-3">
+  <div class="col-md-3">
+    <a href="{{ url_for('drivers.list_drivers') }}" class="text-decoration-none">
+      <div class="card text-bg-primary h-100">
+        <div class="card-body text-center">
+          <h2 class="card-title">{{ drivers }}</h2>
+          <p class="card-text">Drivers</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-3">
+    <a href="{{ url_for('trucks.list_trucks') }}" class="text-decoration-none">
+      <div class="card text-bg-success h-100">
+        <div class="card-body text-center">
+          <h2 class="card-title">{{ trucks }}</h2>
+          <p class="card-text">Trucks</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-3">
+    <a href="{{ url_for('trailers.list_trailers') }}" class="text-decoration-none">
+      <div class="card text-bg-warning h-100">
+        <div class="card-body text-center">
+          <h2 class="card-title">{{ trailers }}</h2>
+          <p class="card-text">Trailers</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-3">
+    <a href="{{ url_for('workshop.list_jobs') }}" class="text-decoration-none">
+      <div class="card text-bg-danger h-100">
+        <div class="card-body text-center">
+          <h2 class="card-title">{{ workshop_jobs }}</h2>
+          <p class="card-text">Workshop Jobs</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+{% endblock %}

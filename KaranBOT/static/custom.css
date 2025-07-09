@@ -1,0 +1,70 @@
+/* Animated flame border */
+body {
+    /* Set a thick border that will be replaced by the flame image */
+    border: 30px solid black;
+    border-image-source: url(https://media.giphy.com/media/l0JLSB2n84m2A24qA/giphy.gif);
+    border-image-slice: 40; /* Adjust slicing to get the best part of the GIF */
+    border-image-repeat: round; /* Tile the image smoothly */
+    padding: 15px;
+    background-color: #000; /* Black background makes flames pop */
+    margin: 0;
+}
+
+/* Keep content readable on top of the dark background */
+.navbar, .container {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    padding: 15px;
+}
+
+/* Chat bubble styles */
+.chat-log-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.chat-message {
+    display: flex;
+    margin-bottom: 15px;
+    flex-direction: column;
+}
+
+.message-bubble {
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 70%;
+    line-height: 1.5;
+}
+
+.user-message .message-bubble {
+    background-color: #0d6efd; /* Bootstrap primary blue */
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+.bot-message .message-bubble {
+    background-color: #e9ecef; /* Bootstrap light grey */
+    color: #212529;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+}
+
+.message-sender {
+    font-size: 0.8rem;
+    color: #6c757d; /* Bootstrap muted grey */
+    margin-bottom: 2px;
+}
+
+.user-message .message-sender {
+    align-self: flex-end;
+    margin-right: 15px;
+}
+
+.bot-message .message-sender {
+    align-self: flex-start;
+    margin-left: 15px;
+}

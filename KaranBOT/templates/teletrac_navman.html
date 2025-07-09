@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Teletrac Navman Dashboard</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <h4>Trip History</h4>
+            <input type="text" id="tripFilter" class="form-control mb-2" placeholder="Filter by vehicle or date...">
+            <ul id="tripHistory" class="list-group"></ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Alerts</h4>
+            <ul id="alerts" class="list-group"></ul>
+        </div>
+        <div class="col-md-4">
+            <h4>Truck Map</h4>
+            <div id="map" style="height: 350px;"></div>
+            <div class="mt-2">
+                <label>Customize Trucks:</label>
+                <select id="truckSelect" class="form-control mb-2"></select>
+                <input type="color" id="truckColor" class="form-control mb-2" value="#007bff">
+                <button id="applyTruckStyle" class="btn btn-primary btn-block">Apply Style</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+<script src="{{ url_for('static', filename='js/teletrac_navman.js') }}"></script>
+{% endblock %}
